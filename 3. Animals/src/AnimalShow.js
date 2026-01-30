@@ -1,69 +1,40 @@
-import { useState } from "react";
-import { v4 as uuid } from "uuid";
-import "./AnimalShow.css";
+import './AnimalShow.css';
+import { useState } from 'react';
+import bird from './svg/bird.svg';
+import cat from './svg/cat.svg';
+import cow from './svg/cow.svg';
+import dog from './svg/dog.svg';
+import gator from './svg/gator.svg';
+import heart from './svg/heart.svg';
+import horse from './svg/horse.svg';
 
-import bird from "./svg/bird.svg";
-import cat from "./svg/cat.svg";
-import cow from "./svg/cow.svg";
-import dog from "./svg/dog.svg";
-import gator from "./svg/gator.svg";
-import horse from "./svg/horse.svg";
-import heart from "./svg/heart.svg";
+const svgMap = {
+  bird,
+  cat,
+  cow,
+  dog,
+  gator,
+  horse,
+};
 
-export default function AnimalShow() {
-  const [animals, setAnimals] = useState([]);
+function AnimalShow({ type }) {
+  const [clicks, setClicks] = useState(0);
 
-  const animalImages = [bird, cat, cow, dog, gator, horse];
-
-  const getRandomAnimal = () => {
-    const randomIndex = Math.floor(Math.random() * animalImages.length);
-    return { id: uuid(), image: animalImages[randomIndex], heartSize: 10 };
-  };
-
-  const addAnimal = () => {
-    setAnimals((oldAnimals) => [...oldAnimals, getRandomAnimal()]);
-  };
-
-  const biggerHeart = (id) => {
-    setAnimals((oldAnimals) =>
-      oldAnimals.map((animal) =>
-        animal.id === id
-          ? { ...animal, heartSize: animal.heartSize + 10 }
-          : animal,
-      ),
-    );
-  };
-
-  const deleteAnimal = (id) => {
-    setAnimals((oldAnimals) => oldAnimals.filter((animal) => animal.id !== id));
+  const handleClick = () => {
+    setClicks(clicks + 1);
   };
 
   return (
-    <div className="container">
-      <button className="button" onClick={addAnimal}>
-        Add Animal
-      </button>
-
-      <div className="animal-list">
-        {animals.map((animal, i) => (
-          <div className="animal-box">
-            <img
-              src={animal.image}
-              alt="animal"
-              className="animal"
-              onClick={() => deleteAnimal(animal.id)}
-            />
-
-            <img
-              src={heart}
-              alt="heart"
-              className="heart"
-              style={{ width: animal.heartSize + "px" }}
-              onClick={() => biggerHeart(animal.id)}
-            />
-          </div>
-        ))}
-      </div>
+    <div className="animal-show" onClick={handleClick}>
+      <img className="animal" alt="animal" src={svgMap[type]} />
+      <img
+        className="heart"
+        alt="heart"
+        src={heart}
+        style={{ width: 10 + 10 * clicks + 'px' }}
+      />
     </div>
   );
 }
+
+export default AnimalShow;
