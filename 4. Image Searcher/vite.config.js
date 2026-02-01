@@ -2,6 +2,11 @@ import { defineConfig, transformWithEsbuild } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      axios: "axios/dist/browser/axios.cjs",
+    },
+  },
   plugins: [
     {
       name: "treat-js-files-as-jsx",
@@ -20,6 +25,7 @@ export default defineConfig({
   },
   optimizeDeps: {
     force: true,
+    include: ["axios"],
     esbuildOptions: {
       loader: {
         ".js": "jsx",
