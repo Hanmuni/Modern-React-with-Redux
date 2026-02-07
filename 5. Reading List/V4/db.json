@@ -1,0 +1,32 @@
+{
+  "books": [
+    {
+      "title": "Emma",
+      "id": 1
+    },
+    {
+      "title": "Persuasion",
+      "id": 2
+    },
+    {
+      "title": "The Age of Innocence",
+      "id": 4
+    },
+    {
+      "title": "Far from the Madding Crowd",
+      "id": 5
+    },
+    {
+      "title": "Love in the Time of Cholera",
+      "id": 7
+    },
+    {
+      "title": "The Scarlet Letter",
+      "id": 11
+    },
+    {
+      "title": "Doctor Zhivago",
+      "id": 12
+    }
+  ]
+}
